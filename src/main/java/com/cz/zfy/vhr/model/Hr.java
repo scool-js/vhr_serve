@@ -1,10 +1,13 @@
 package com.cz.zfy.vhr.model;
 
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsPasswordService;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 public class Hr implements UserDetails {
     private Integer id;
@@ -26,6 +29,19 @@ public class Hr implements UserDetails {
     private String userface;
 
     private String remark;
+    private List<Role> roles;
+
+    public Boolean getEnabled() {
+        return enabled;
+    }
+
+    public List<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
+    }
 
     public Integer getId() {
         return id;
@@ -103,7 +119,11 @@ public class Hr implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        List<SimpleGrantedAuthority> authorities = new ArrayList<>(roles.size());
+        for(Role role:roles){
+            authorities.add(new SimpleGrantedAuthority(role.getName()));
+        }
+        return authorities;
     }
 
     @Override

@@ -1,6 +1,9 @@
 package com.cz.zfy.vhr.mapper;
 
 import com.cz.zfy.vhr.model.Menu;
+import com.cz.zfy.vhr.model.Role;
+
+import java.util.List;
 
 public interface MenuMapper {
     int deleteByPrimaryKey(Integer id);
@@ -14,4 +17,8 @@ public interface MenuMapper {
     int updateByPrimaryKeySelective(Menu record);
 
     int updateByPrimaryKey(Menu record);
+
+    List<Menu> getMenuByHrId(Integer hrid);
+
+    List<Menu> getAllMenusWithRole();
 }
