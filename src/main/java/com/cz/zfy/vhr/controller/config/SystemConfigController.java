@@ -1,4 +1,4 @@
-package com.cz.zfy.vhr.controller;
+package com.cz.zfy.vhr.controller.config;
 
 import com.cz.zfy.vhr.model.Menu;
 import com.cz.zfy.vhr.service.MenuService;
